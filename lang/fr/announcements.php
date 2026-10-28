@@ -1,0 +1,54 @@
+<?php
+
+return [
+    'title' => 'Annonces',
+    'model' => 'annonce',
+    'addon' => [
+        'name' => 'Annonces',
+        'description' => 'Messages d\'info, d\'avertissement et de succès en haut de chaque page.',
+    ],
+    'form' => [
+        'category' => 'Catégorie',
+        'title' => 'Titre',
+        'body' => 'Message',
+        'starts_at' => 'Afficher à partir de',
+        'starts_at_help' => 'Vide : tout de suite. Heures en :zone, le fuseau horaire de votre profil.',
+        'ends_at' => 'Afficher jusqu\'à',
+        'ends_at_help' => 'Vide : jusqu\'à ce que vous y mettiez fin.',
+        'audience' => 'Qui la voit',
+        'button_url' => 'Lien du bouton',
+        'button_url_placeholder' => 'https://… ou /server/abc123',
+        'button_url_invalid' => 'Utilisez un lien qui commence par https:// ou par / pour une page de ce panel.',
+        'button_label' => 'Texte du bouton',
+    ],
+    'category' => [
+        'info' => 'Info',
+        'warning' => 'Avertissement',
+        'success' => 'Succès',
+    ],
+    'audience' => [
+        'everyone' => 'Tout le monde',
+        'admins' => 'Admins uniquement',
+    ],
+    'state' => [
+        'live' => 'En cours',
+        'scheduled' => 'Planifiée',
+        'ended' => 'Terminée',
+    ],
+    'table' => [
+        'state' => 'Statut',
+        'right_away' => 'Tout de suite',
+        'until_ended' => 'Jusqu\'à la fin',
+        'end' => 'Terminer maintenant',
+        'end_heading' => 'Terminer cette annonce maintenant ?',
+        'end_help' => 'Sa barre disparaît pour tout le monde. Vous pouvez la réafficher en modifiant "Afficher jusqu\'à".',
+        'empty' => 'Aucune annonce pour l\'instant',
+        'empty_help' => 'Une annonce s\'affiche comme une barre en haut de chaque page pour les personnes que vous choisissez.',
+    ],
+    'bars' => [
+        'open' => 'Ouvrir',
+        'until' => 'Jusqu\'au',
+        'unpin' => 'Détacher',
+        'pin_again' => 'Épingler à nouveau',
+    ],
+];
