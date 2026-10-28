@@ -1,0 +1,54 @@
+<?php
+
+return [
+    'title' => '公告',
+    'model' => '公告',
+    'addon' => [
+        'name' => '公告',
+        'description' => '在每個頁面頂端顯示的資訊、警告與成功訊息。',
+    ],
+    'form' => [
+        'category' => '類別',
+        'title' => '標題',
+        'body' => '內容',
+        'starts_at' => '顯示開始',
+        'starts_at_help' => '留空:立即顯示。時間為 :zone,也就是你個人資料中的時區。',
+        'ends_at' => '顯示結束',
+        'ends_at_help' => '留空:直到你結束它。',
+        'audience' => '誰能看到',
+        'button_url' => '按鈕連結',
+        'button_url_placeholder' => 'https://… 或 /server/abc123',
+        'button_url_invalid' => '請使用以 https:// 開頭的連結,或以 / 開頭的本面板頁面。',
+        'button_label' => '按鈕文字',
+    ],
+    'category' => [
+        'info' => '資訊',
+        'warning' => '警告',
+        'success' => '成功',
+    ],
+    'audience' => [
+        'everyone' => '所有人',
+        'admins' => '僅管理員',
+    ],
+    'state' => [
+        'live' => '顯示中',
+        'scheduled' => '已排程',
+        'ended' => '已結束',
+    ],
+    'table' => [
+        'state' => '狀態',
+        'right_away' => '立即',
+        'until_ended' => '直到結束',
+        'end' => '立即結束',
+        'end_heading' => '現在結束這則公告?',
+        'end_help' => '所有人的橫幅都會消失。修改「顯示結束」即可再次顯示。',
+        'empty' => '還沒有公告',
+        'empty_help' => '公告會以橫幅形式顯示在你所選的人每個頁面的頂端。',
+    ],
+    'bars' => [
+        'open' => '開啟',
+        'until' => '截止',
+        'unpin' => '取消釘選',
+        'pin_again' => '重新釘選',
+    ],
+];

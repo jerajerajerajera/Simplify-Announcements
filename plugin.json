@@ -1,0 +1,18 @@
+{
+    "id": "simplify-announcements",
+    "name": "Simplify Announcements",
+    "author": "jera",
+    "version": "1.0.0-dev",
+    "description": "Info, warning and success messages for everyone on your panel, shown as a bar at the top of every page.",
+    "category": "plugin",
+    "namespace": "Simplify\\Announcements",
+    "class": "SimplifyAnnouncementsPlugin",
+    "panels": [
+        "admin",
+        "app",
+        "server"
+    ],
+    "panel_version": "^1.0.0-beta38",
+    "api_version": 1,
+    "update_url": "https://hub.pelican.dev/plugins/simplify-announcements/update.json"
+}
