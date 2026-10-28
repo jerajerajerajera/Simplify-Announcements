@@ -2,7 +2,7 @@
     "id": "simplify-announcements",
     "name": "Simplify Announcements",
     "author": "jera",
-    "version": "1.0.0-dev",
+    "version": "1.0.0",
     "description": "Info, warning and success messages for everyone on your panel, shown as a bar at the top of every page.",
     "category": "plugin",
     "namespace": "Simplify\\Announcements",
