@@ -22,6 +22,8 @@ return [
         'button_label' => 'Chữ trên nút',
         'in_bell' => 'Đưa cả vào thông báo của mọi người',
         'in_bell_help' => 'Ai thấy nó cũng sẽ thấy trong chuông, từ lúc bắt đầu đến khi kết thúc.',
+        'push' => 'Gửi cả dưới dạng thông báo ứng dụng',
+        'push_help' => 'Simplify gửi nó tới điện thoại và máy tính của những người thấy nó và đã bật thông báo ứng dụng. Thiết bị online trong vòng một ngày sau khi bắt đầu cũng nhận được.',
     ],
     'category' => [
         'info' => 'Info',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Thông báo',
         'in_bell_sent' => 'Đã gửi',
         'in_bell_waiting' => 'Chờ bắt đầu',
+        'push' => 'Thông báo ứng dụng',
+        'pushed_to' => 'Thiết bị đã nhận: :count',
     ],
     'bars' => [
         'open' => 'Mở',

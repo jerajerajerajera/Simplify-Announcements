@@ -22,6 +22,8 @@ return [
         'button_label' => 'Text buton',
         'in_bell' => 'Pune și în notificările tuturor',
         'in_bell_help' => 'Oricine îl vede îl găsește și la clopoțel, de la început până la sfârșit.',
+        'push' => 'Trimite și ca notificare în aplicație',
+        'push_help' => 'Simplify îl trimite pe telefoanele și calculatoarele celor care îl văd și au pornit notificările aplicației. Dispozitivele care intră online într-o zi de la început îl primesc și ele.',
     ],
     'category' => [
         'info' => 'Info',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Notificări',
         'in_bell_sent' => 'Trimis',
         'in_bell_waiting' => 'Așteaptă începutul',
+        'push' => 'Notificare în aplicație',
+        'pushed_to' => 'Dispozitive atinse: :count',
     ],
     'bars' => [
         'open' => 'Deschide',

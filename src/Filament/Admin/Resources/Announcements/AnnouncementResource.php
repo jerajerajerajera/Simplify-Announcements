@@ -21,6 +21,7 @@ use Filament\Tables\Table;
 use Simplify\Announcements\Filament\Admin\Resources\Announcements\Pages\ManageAnnouncements;
 use Simplify\Announcements\Models\Announcement;
 use Simplify\Announcements\Services\Bell;
+use Simplify\Announcements\Services\Push;
 use Simplify\Announcements\Support\Rules;
 
 /**
@@ -106,6 +107,11 @@ final class AnnouncementResource extends Resource
             Toggle::make('in_bell')
                 ->label(self::text('form.in_bell'))
                 ->helperText(self::text('form.in_bell_help')),
+            Toggle::make('push')
+                ->label(self::text('form.push'))
+                ->helperText(self::text('form.push_help'))
+                ->default(true)
+                ->visible(Push::available()),
         ]);
     }
 
@@ -155,9 +161,15 @@ final class AnnouncementResource extends Resource
                         default => self::text('table.in_bell_waiting'),
                     })
                     ->placeholder('-'),
+                TextColumn::make('pushed_to')
+                    ->label(self::text('table.push'))
+                    ->icon('tabler-device-mobile')
+                    ->state(fn (Announcement $record): ?string => $record->push ? self::text('table.pushed_to', ['count' => $record->pushed_to]) : null)
+                    ->placeholder('-')
+                    ->visible(Push::available()),
             ])
             ->recordActions([
-                EditAction::make()->after(fn () => Bell::deliverDue()),
+                EditAction::make()->after(fn () => self::deliverNow()),
                 Action::make('end')
                     ->label(self::text('table.end'))
                     ->icon('tabler-player-stop')
@@ -179,6 +191,13 @@ final class AnnouncementResource extends Resource
         return [
             'index' => ManageAnnouncements::route('/'),
         ];
+    }
+
+    /** A live announcement reaches the bell and devices right away instead of on the next scheduler run. */
+    public static function deliverNow(): void
+    {
+        Bell::deliverDue();
+        Push::sendDue();
     }
 
     /** Times are stored in UTC and shown in the admin's own time zone from their Pelican profile. */

@@ -22,6 +22,8 @@ return [
         'button_label' => 'Button text',
         'in_bell' => 'Also put in everyone\'s notifications',
         'in_bell_help' => 'Everyone who sees it also finds it in the bell, from when it starts until it ends.',
+        'push' => 'Also send as app notification',
+        'push_help' => 'Simplify sends it to the phones and computers of everyone who sees it and turned on app notifications. Devices that come online within a day after the start still get it.',
     ],
     'category' => [
         'info' => 'Info',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Notifications',
         'in_bell_sent' => 'Sent',
         'in_bell_waiting' => 'Waits for start',
+        'push' => 'App notification',
+        'pushed_to' => 'Devices reached: :count',
     ],
     'bars' => [
         'open' => 'Open',

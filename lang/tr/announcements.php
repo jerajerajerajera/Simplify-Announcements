@@ -22,6 +22,8 @@ return [
         'button_label' => 'Düğme metni',
         'in_bell' => 'Herkesin bildirimlerine de ekle',
         'in_bell_help' => 'Onu gören herkes başlangıcından bitişine kadar zilde de bulur.',
+        'push' => 'Uygulama bildirimi olarak da gönder',
+        'push_help' => 'Simplify onu, gören ve uygulama bildirimlerini açmış herkesin telefonlarına ve bilgisayarlarına gönderir. Başlangıçtan sonraki bir gün içinde çevrimiçi olan cihazlar da alır.',
     ],
     'category' => [
         'info' => 'Bilgi',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Bildirimler',
         'in_bell_sent' => 'Gönderildi',
         'in_bell_waiting' => 'Başlangıcı bekliyor',
+        'push' => 'Uygulama bildirimi',
+        'pushed_to' => 'Ulaşılan cihaz: :count',
     ],
     'bars' => [
         'open' => 'Aç',

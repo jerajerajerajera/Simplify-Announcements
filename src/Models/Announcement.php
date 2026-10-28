@@ -25,13 +25,15 @@ use Simplify\Announcements\Support\Rules;
  * @property ?string $button_url https://… or /path on this panel
  * @property bool $in_bell also in everyone's notifications
  * @property ?CarbonInterface $in_bell_at when it was put there
+ * @property bool $push also as app notification through Simplify
+ * @property int $pushed_to devices reached, added up
  * @property ?int $created_by
  */
 final class Announcement extends Model
 {
     protected $table = 'simplify_announcements';
 
-    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'in_bell', 'created_by'];
+    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'in_bell', 'push', 'created_by'];
 
     protected $attributes = ['category' => 'info', 'audience' => 'everyone'];
 
@@ -42,6 +44,8 @@ final class Announcement extends Model
             'ends_at' => 'datetime',
             'in_bell' => 'boolean',
             'in_bell_at' => 'datetime',
+            'push' => 'boolean',
+            'pushed_to' => 'integer',
         ];
     }
 

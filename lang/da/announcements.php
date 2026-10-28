@@ -22,6 +22,8 @@ return [
         'button_label' => 'Knaptekst',
         'in_bell' => 'Læg også i alles notifikationer',
         'in_bell_help' => 'Alle, der ser den, finder den også i klokken, fra start til slut.',
+        'push' => 'Send også som app-notifikation',
+        'push_help' => 'Simplify sender den til telefoner og computere hos alle, der ser den og har slået app-notifikationer til. Enheder, der kommer online inden for en dag efter start, får den også.',
     ],
     'category' => [
         'info' => 'Info',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Notifikationer',
         'in_bell_sent' => 'Sendt',
         'in_bell_waiting' => 'Venter på start',
+        'push' => 'App-notifikation',
+        'pushed_to' => 'Enheder nået: :count',
     ],
     'bars' => [
         'open' => 'Åbn',

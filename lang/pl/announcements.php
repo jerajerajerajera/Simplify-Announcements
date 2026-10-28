@@ -22,6 +22,8 @@ return [
         'button_label' => 'Tekst przycisku',
         'in_bell' => 'Dodaj też do powiadomień wszystkich',
         'in_bell_help' => 'Każdy, kto je widzi, znajdzie je też pod dzwonkiem, od startu do końca.',
+        'push' => 'Wyślij też jako powiadomienie w aplikacji',
+        'push_help' => 'Simplify wysyła je na telefony i komputery wszystkich, którzy je widzą i mają włączone powiadomienia aplikacji. Urządzenia, które połączą się w ciągu doby od startu, też je dostaną.',
     ],
     'category' => [
         'info' => 'Info',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Powiadomienia',
         'in_bell_sent' => 'Wysłane',
         'in_bell_waiting' => 'Czeka na start',
+        'push' => 'Powiadomienie w aplikacji',
+        'pushed_to' => 'Osiągnięte urządzenia: :count',
     ],
     'bars' => [
         'open' => 'Otwórz',

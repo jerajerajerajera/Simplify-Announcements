@@ -22,6 +22,8 @@ return [
         'button_label' => '버튼 텍스트',
         'in_bell' => '모든 사람의 알림에도 넣기',
         'in_bell_help' => '보는 사람은 시작부터 끝날 때까지 종 아이콘에서도 볼 수 있습니다.',
+        'push' => '앱 알림으로도 보내기',
+        'push_help' => 'Simplify가 이 공지를 보고 앱 알림을 켠 모든 사람의 휴대폰과 컴퓨터로 보냅니다. 시작 후 하루 안에 온라인이 된 기기도 받습니다.',
     ],
     'category' => [
         'info' => '정보',
@@ -49,6 +51,8 @@ return [
         'in_bell' => '알림',
         'in_bell_sent' => '보냄',
         'in_bell_waiting' => '시작 대기 중',
+        'push' => '앱 알림',
+        'pushed_to' => '받은 기기: :count',
     ],
     'bars' => [
         'open' => '열기',
