@@ -71,15 +71,7 @@ $player = User::where('email', 'smoke-player@example.com')->first()
 ensure($admin->isRootAdmin() && ! $player->isAdmin(), 'the smoke accounts do not have the right roles');
 Announcement::query()->delete();
 
-step('admin page renders', function () use ($admin) {
-    $url = AnnouncementResource::getUrl(panel: 'admin');
-    expectOk(visit($admin, $url), $url);
-});
-step('a player cannot open the admin page', function () use ($player) {
-    $url = AnnouncementResource::getUrl(panel: 'admin');
-    ensure(! str_contains((string) visit($player, $url)->getContent(), 'No announcements yet'), 'the page opened for a player');
-});
-
+// Pages of the app panel first: in one process, a page of another panel leaves its render hooks behind.
 $live = Announcement::create(['category' => 'warning', 'title' => 'Smoke maintenance tonight', 'body' => 'Back at nine.', 'ends_at' => now()->addHour(), 'button_url' => '/']);
 Announcement::create(['title' => 'Smoke for admins', 'audience' => 'admins']);
 Announcement::create(['title' => 'Smoke later', 'starts_at' => now()->addDay()]);
@@ -92,6 +84,15 @@ step('live announcements show as bars on the dashboard', function () use ($admin
     ensure(! str_contains($page, 'Smoke later') && ! str_contains($page, 'Smoke ended'), 'a bar outside its times shows');
     ensure(str_contains(expectOk(visit($admin, url('/')), '/'), 'Smoke for admins'), 'an admin misses the admins-only bar');
 });
+step('admin page renders', function () use ($admin) {
+    $url = AnnouncementResource::getUrl(panel: 'admin');
+    expectOk(visit($admin, $url), $url);
+});
+step('a player cannot open the admin page', function () use ($player) {
+    $url = AnnouncementResource::getUrl(panel: 'admin');
+    ensure(! str_contains((string) visit($player, $url)->getContent(), 'Smoke maintenance tonight'), 'the page opened for a player');
+});
+
 step('the admin list shows every announcement', function () use ($admin) {
     $url = AnnouncementResource::getUrl(panel: 'admin');
     $page = expectOk(visit($admin, $url), $url);
