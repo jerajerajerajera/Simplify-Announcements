@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… eller /server/abc123',
         'button_url_invalid' => 'Använd en länk som börjar med https:// eller med / för en sida i den här panelen.',
         'button_label' => 'Knapptext',
+        'in_bell' => 'Lägg också i allas aviseringar',
+        'in_bell_help' => 'Alla som ser det hittar det också i klockan, från start till slut.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'Fältet försvinner för alla. Du kan visa det igen genom att ändra "Visa till".',
         'empty' => 'Inga meddelanden än',
         'empty_help' => 'Ett meddelande visas som ett fält högst upp på varje sida för de personer du väljer.',
+        'in_bell' => 'Aviseringar',
+        'in_bell_sent' => 'Skickat',
+        'in_bell_waiting' => 'Väntar på start',
     ],
     'bars' => [
         'open' => 'Öppna',

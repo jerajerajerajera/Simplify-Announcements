@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… veya /server/abc123',
         'button_url_invalid' => 'https:// ile ya da bu panelin bir sayfası için / ile başlayan bir bağlantı kullan.',
         'button_label' => 'Düğme metni',
+        'in_bell' => 'Herkesin bildirimlerine de ekle',
+        'in_bell_help' => 'Onu gören herkes başlangıcından bitişine kadar zilde de bulur.',
     ],
     'category' => [
         'info' => 'Bilgi',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'Çubuğu herkes için kaybolur. "Gösterme bitişi"ni değiştirerek yeniden gösterebilirsin.',
         'empty' => 'Henüz duyuru yok',
         'empty_help' => 'Duyuru, seçtiğin kişiler için her sayfanın üstünde bir çubuk olarak görünür.',
+        'in_bell' => 'Bildirimler',
+        'in_bell_sent' => 'Gönderildi',
+        'in_bell_waiting' => 'Başlangıcı bekliyor',
     ],
     'bars' => [
         'open' => 'Aç',

@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… arba /server/abc123',
         'button_url_invalid' => 'Naudok nuorodą, kuri prasideda https:// arba / šio skydelio puslapiui.',
         'button_label' => 'Mygtuko tekstas',
+        'in_bell' => 'Įdėti ir į visų pranešimus',
+        'in_bell_help' => 'Visi, kurie jį mato, ras jį ir varpelyje nuo pradžios iki pabaigos.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'Juosta dings visiems. Gali jį vėl parodyti pakeitęs "Rodyti iki".',
         'empty' => 'Pranešimų dar nėra',
         'empty_help' => 'Pranešimas rodomas kaip juosta kiekvieno puslapio viršuje tavo pasirinktiems žmonėms.',
+        'in_bell' => 'Pranešimai',
+        'in_bell_sent' => 'Išsiųsta',
+        'in_bell_waiting' => 'Laukia pradžios',
     ],
     'bars' => [
         'open' => 'Atidaryti',

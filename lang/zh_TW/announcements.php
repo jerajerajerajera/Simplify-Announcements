@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… 或 /server/abc123',
         'button_url_invalid' => '請使用以 https:// 開頭的連結,或以 / 開頭的本面板頁面。',
         'button_label' => '按鈕文字',
+        'in_bell' => '同時放入所有人的通知',
+        'in_bell_help' => '能看到它的人從開始到結束都能在鈴鐺裡找到它。',
     ],
     'category' => [
         'info' => '資訊',
@@ -44,6 +46,9 @@ return [
         'end_help' => '所有人的橫幅都會消失。修改「顯示結束」即可再次顯示。',
         'empty' => '還沒有公告',
         'empty_help' => '公告會以橫幅形式顯示在你所選的人每個頁面的頂端。',
+        'in_bell' => '通知',
+        'in_bell_sent' => '已傳送',
+        'in_bell_waiting' => '等待開始',
     ],
     'bars' => [
         'open' => '開啟',

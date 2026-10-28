@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… of /server/abc123',
         'button_url_invalid' => 'Gebruik een link die begint met https:// of met / voor een pagina van dit paneel.',
         'button_label' => 'Knoptekst',
+        'in_bell' => 'Ook in ieders meldingen zetten',
+        'in_bell_help' => 'Iedereen die hem ziet vindt hem ook in de bel, vanaf de start tot het einde.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'De balk verdwijnt voor iedereen. Je kunt hem weer tonen door "Tonen tot" aan te passen.',
         'empty' => 'Nog geen aankondigingen',
         'empty_help' => 'Een aankondiging staat als balk bovenaan elke pagina voor de mensen die je kiest.',
+        'in_bell' => 'Meldingen',
+        'in_bell_sent' => 'Verstuurd',
+        'in_bell_waiting' => 'Wacht op start',
     ],
     'bars' => [
         'open' => 'Openen',

@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… oder /server/abc123',
         'button_url_invalid' => 'Nutze einen Link, der mit https:// beginnt, oder mit / für eine Seite dieses Panels.',
         'button_label' => 'Button-Text',
+        'in_bell' => 'Auch in die Benachrichtigungen aller legen',
+        'in_bell_help' => 'Alle, die sie sehen, finden sie auch in der Glocke, vom Start bis zum Ende.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'Die Leiste verschwindet für alle. Du kannst sie wieder anzeigen, indem du "Anzeigen bis" änderst.',
         'empty' => 'Noch keine Ankündigungen',
         'empty_help' => 'Eine Ankündigung erscheint als Leiste oben auf jeder Seite für die Personen, die du auswählst.',
+        'in_bell' => 'Benachrichtigungen',
+        'in_bell_sent' => 'Gesendet',
+        'in_bell_waiting' => 'Wartet auf Start',
     ],
     'bars' => [
         'open' => 'Öffnen',

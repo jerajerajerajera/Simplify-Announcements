@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… o /server/abc123',
         'button_url_invalid' => 'Usa un enlace que empiece por https:// o por / para una página de este panel.',
         'button_label' => 'Texto del botón',
+        'in_bell' => 'Poner también en las notificaciones de todos',
+        'in_bell_help' => 'Quien lo ve también lo encuentra en la campana, desde que empieza hasta que termina.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'Su barra desaparece para todos. Puedes volver a mostrarlo cambiando "Mostrar hasta".',
         'empty' => 'Aún no hay anuncios',
         'empty_help' => 'Un anuncio aparece como una barra en la parte superior de cada página para las personas que elijas.',
+        'in_bell' => 'Notificaciones',
+        'in_bell_sent' => 'Enviado',
+        'in_bell_waiting' => 'Espera el inicio',
     ],
     'bars' => [
         'open' => 'Abrir',

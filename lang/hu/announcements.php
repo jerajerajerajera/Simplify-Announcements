@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… vagy /server/abc123',
         'button_url_invalid' => 'Olyan linket használj, ami https://-sel kezdődik, vagy /-rel a panel egy oldalához.',
         'button_label' => 'Gomb szövege',
+        'in_bell' => 'Mindenki értesítései közé is',
+        'in_bell_help' => 'Aki látja, a csengőben is megtalálja, a kezdéstől a végéig.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'A sávja mindenkinél eltűnik. A "Megjelenítés eddig" módosításával újra megjelenítheted.',
         'empty' => 'Még nincsenek közlemények',
         'empty_help' => 'A közlemény sávként jelenik meg minden oldal tetején a kiválasztott embereknek.',
+        'in_bell' => 'Értesítések',
+        'in_bell_sent' => 'Elküldve',
+        'in_bell_waiting' => 'Kezdésre vár',
     ],
     'bars' => [
         'open' => 'Megnyitás',

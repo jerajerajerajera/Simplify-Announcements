@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Simplify\Announcements\Providers;
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Schedule;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Simplify\Announcements\AnnouncementsAddon;
@@ -24,5 +25,8 @@ final class AnnouncementsProvider extends ServiceProvider
     {
         Gate::policy(Announcement::class, AnnouncementPolicy::class);
         Livewire::component('simplify-announcements-bars', AnnouncementBars::class);
+        $this->app->booted(function (): void {
+            Schedule::command('simplify-announcements:deliver')->everyMinute()->withoutOverlapping(10);
+        });
     }
 }

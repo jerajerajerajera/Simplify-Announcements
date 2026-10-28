@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… lub /server/abc123',
         'button_url_invalid' => 'Użyj linku zaczynającego się od https:// albo od / dla strony tego panelu.',
         'button_label' => 'Tekst przycisku',
+        'in_bell' => 'Dodaj też do powiadomień wszystkich',
+        'in_bell_help' => 'Każdy, kto je widzi, znajdzie je też pod dzwonkiem, od startu do końca.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'Pasek zniknie dla wszystkich. Możesz go znowu pokazać, zmieniając "Pokazuj do".',
         'empty' => 'Brak ogłoszeń',
         'empty_help' => 'Ogłoszenie pojawia się jako pasek na górze każdej strony dla wybranych osób.',
+        'in_bell' => 'Powiadomienia',
+        'in_bell_sent' => 'Wysłane',
+        'in_bell_waiting' => 'Czeka na start',
     ],
     'bars' => [
         'open' => 'Otwórz',

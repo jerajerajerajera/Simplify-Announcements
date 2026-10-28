@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… sau /server/abc123',
         'button_url_invalid' => 'Folosește un link care începe cu https:// sau cu / pentru o pagină a acestui panou.',
         'button_label' => 'Text buton',
+        'in_bell' => 'Pune și în notificările tuturor',
+        'in_bell_help' => 'Oricine îl vede îl găsește și la clopoțel, de la început până la sfârșit.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'Bara dispare pentru toată lumea. Îl poți afișa din nou schimbând "Afișează până la".',
         'empty' => 'Încă nu există anunțuri',
         'empty_help' => 'Un anunț apare ca bară în partea de sus a fiecărei pagini pentru persoanele pe care le alegi.',
+        'in_bell' => 'Notificări',
+        'in_bell_sent' => 'Trimis',
+        'in_bell_waiting' => 'Așteaptă începutul',
     ],
     'bars' => [
         'open' => 'Deschide',

@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… ou /server/abc123',
         'button_url_invalid' => 'Utilisez un lien qui commence par https:// ou par / pour une page de ce panel.',
         'button_label' => 'Texte du bouton',
+        'in_bell' => 'Ajouter aussi aux notifications de chacun',
+        'in_bell_help' => 'Toutes les personnes qui la voient la trouvent aussi dans la cloche, du début à la fin.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'Sa barre disparaît pour tout le monde. Vous pouvez la réafficher en modifiant "Afficher jusqu\'à".',
         'empty' => 'Aucune annonce pour l\'instant',
         'empty_help' => 'Une annonce s\'affiche comme une barre en haut de chaque page pour les personnes que vous choisissez.',
+        'in_bell' => 'Notifications',
+        'in_bell_sent' => 'Envoyée',
+        'in_bell_waiting' => 'Attend le début',
     ],
     'bars' => [
         'open' => 'Ouvrir',

@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Simplify\Announcements\Livewire;
 
-use Filament\Actions\Action;
-use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Simplify\Announcements\Models\Announcement;
-use Simplify\Announcements\Support\Rules;
+use Simplify\Announcements\Services\Bell;
 
 /**
  * The live announcements as bars at the top of every page. Each bar is pinned; unpinning it removes the bar for this
- * account and leaves it in the bell, with a button to pin it again.
+ * account and leaves it in the bell, with a button to pin it again. When it is already in the bell for everyone, that
+ * item stays and no second one is added.
  */
 final class AnnouncementBars extends Component
 {
@@ -37,21 +36,10 @@ final class AnnouncementBars extends Component
         }
 
         $announcement->dismissedBy()->syncWithoutDetaching([$user->id => ['created_at' => now()]]);
-        $user->notifyNow(Notification::make()
-            ->title($announcement->title)
-            ->body($announcement->body)
-            ->icon(Rules::icon($announcement->category))
-            ->iconColor(Rules::color($announcement->category))
-            ->viewData(['simplify_announcement' => $announcement->id])
-            ->actions([
-                Action::make('pin')
-                    ->label(__('simplify-announcements::announcements.bars.pin_again'))
-                    ->icon('tabler-pin')
-                    ->button()
-                    ->dispatch(self::PIN_EVENT, ['id' => $announcement->id])
-                    ->close(),
-            ])
-            ->toDatabase());
+        if (! Bell::has($announcement->id, $user, Bell::EVERYONE)) {
+            Bell::forget($announcement->id, $user);
+            Bell::send($announcement, $user, Bell::UNPINNED);
+        }
         $this->dispatch('databaseNotificationsSent');
     }
 
@@ -64,7 +52,7 @@ final class AnnouncementBars extends Component
         }
 
         Announcement::query()->find($id)?->dismissedBy()->detach($user->id);
-        $user->notifications()->where('data->viewData->simplify_announcement', $id)->delete();
+        Bell::forget($id, $user, Bell::UNPINNED);
         $this->dispatch('databaseNotificationsSent');
     }
 

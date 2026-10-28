@@ -8,12 +8,14 @@ use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Testing\TestResponse;
 use Livewire\Livewire;
 use Simplify\Announcements\Filament\Admin\Resources\Announcements\AnnouncementResource;
 use Simplify\Announcements\Livewire\AnnouncementBars;
 use Simplify\Announcements\Models\Announcement;
+use Simplify\Announcements\Services\Bell;
 
 define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
@@ -112,6 +114,26 @@ step('unpin moves a bar to the bell and pin brings it back', function () use ($p
     Livewire::test(AnnouncementBars::class)->call('pin', $live->id);
     ensure(Announcement::barsFor($player)->whereKey($live->id)->exists(), 'the bar did not come back');
     ensure($player->notifications()->where('data->viewData->simplify_announcement', $live->id)->doesntExist(), 'the bell item stayed');
+});
+
+step('"in everyone\'s notifications" reaches the bell once, for the right accounts', function () use ($admin, $player) {
+    $everyone = Announcement::create(['title' => 'Smoke in the bell', 'in_bell' => true]);
+    $admins = Announcement::create(['title' => 'Smoke bell for admins', 'in_bell' => true, 'audience' => 'admins']);
+    $later = Announcement::create(['title' => 'Smoke bell later', 'in_bell' => true, 'starts_at' => now()->addHour()]);
+    ensure(Artisan::call('simplify-announcements:deliver') === 0, 'the scheduler command failed');
+    Artisan::call('simplify-announcements:deliver');
+    ensure($player->notifications()->where('data->viewData->simplify_announcement', $everyone->id)->count() === 1, 'the player did not get it exactly once');
+    ensure(Bell::has($admins->id, $admin) && ! Bell::has($admins->id, $player), 'admins-only reached the wrong accounts');
+    ensure(! Bell::has($later->id, $player) && $later->fresh()->in_bell_at === null, 'a later one was sent early');
+
+    Auth::setUser($player);
+    Livewire::test(AnnouncementBars::class)->call('unpin', $everyone->id);
+    ensure($player->notifications()->where('data->viewData->simplify_announcement', $everyone->id)->count() === 1, 'unpinning added a second bell item');
+
+    $everyone->update(['ends_at' => now()]);
+    ensure(! Bell::has($everyone->id, $player), 'an ended announcement stayed in the bell');
+    $admins->delete();
+    ensure(! Bell::has($admins->id, $admin), 'a deleted announcement stayed in the bell');
 });
 
 Announcement::query()->where('title', 'like', 'Smoke%')->delete();

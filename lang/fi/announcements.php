@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… tai /server/abc123',
         'button_url_invalid' => 'Käytä linkkiä, joka alkaa https:// tai / tämän paneelin sivulle.',
         'button_label' => 'Painikkeen teksti',
+        'in_bell' => 'Lisää myös kaikkien ilmoituksiin',
+        'in_bell_help' => 'Jokainen, joka näkee sen, löytää sen myös kellosta alusta loppuun.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'Palkki katoaa kaikilta. Voit näyttää sen uudelleen muuttamalla kohtaa "Näytä asti".',
         'empty' => 'Ei vielä tiedotteita',
         'empty_help' => 'Tiedote näkyy palkkina jokaisen sivun yläreunassa valitsemillesi ihmisille.',
+        'in_bell' => 'Ilmoitukset',
+        'in_bell_sent' => 'Lähetetty',
+        'in_bell_waiting' => 'Odottaa alkua',
     ],
     'bars' => [
         'open' => 'Avaa',

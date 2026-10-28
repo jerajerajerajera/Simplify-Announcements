@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… 或 /server/abc123',
         'button_url_invalid' => '请使用以 https:// 开头的链接,或以 / 开头的本面板页面。',
         'button_label' => '按钮文字',
+        'in_bell' => '同时放入所有人的通知',
+        'in_bell_help' => '能看到它的人从开始到结束都能在铃铛里找到它。',
     ],
     'category' => [
         'info' => '信息',
@@ -44,6 +46,9 @@ return [
         'end_help' => '所有人的横幅都会消失。修改“显示结束”即可再次显示。',
         'empty' => '还没有公告',
         'empty_help' => '公告会以横幅形式显示在你所选的人每个页面的顶部。',
+        'in_bell' => '通知',
+        'in_bell_sent' => '已发送',
+        'in_bell_waiting' => '等待开始',
     ],
     'bars' => [
         'open' => '打开',
