@@ -2,6 +2,7 @@
 
 // Loads Simplify Announcements inside a real Pelican panel and opens its pages. Run from the panel folder after
 // `php artisan p:plugin:install simplify-announcements`: php plugins/simplify-announcements/tests/panel/smoke.php
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
@@ -57,10 +58,17 @@ function ensure(bool $ok, string $what): void
     }
 }
 
+// Laravel's handler would print an uncaught error and still exit with 0, so every failure outside a step is caught here.
+set_exception_handler(function (Throwable $e): void {
+    echo 'FAIL setup: '.get_class($e).': '.substr($e->getMessage(), 0, 400)."\n";
+    exit(1);
+});
 $admin = User::where('email', 'smoke-announcements@example.com')->first()
-    ?? User::factory()->create(['email' => 'smoke-announcements@example.com', 'root_admin' => true]);
+    ?? User::factory()->create(['email' => 'smoke-announcements@example.com']);
+$admin->syncRoles(Role::getRootAdmin());
 $player = User::where('email', 'smoke-player@example.com')->first()
-    ?? User::factory()->create(['email' => 'smoke-player@example.com', 'root_admin' => false]);
+    ?? User::factory()->create(['email' => 'smoke-player@example.com']);
+ensure($admin->isRootAdmin() && ! $player->isAdmin(), 'the smoke accounts do not have the right roles');
 Announcement::query()->delete();
 
 step('admin page renders', function () use ($admin) {
