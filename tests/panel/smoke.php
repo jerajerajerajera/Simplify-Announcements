@@ -17,6 +17,7 @@ use Simplify\Announcements\Filament\Admin\Resources\Announcements\AnnouncementRe
 use Simplify\Announcements\Livewire\AnnouncementBars;
 use Simplify\Announcements\Models\Announcement;
 use Simplify\Announcements\Services\Bell;
+use Simplify\Announcements\Services\InGame;
 use Simplify\Announcements\Services\Push;
 
 define('LARAVEL_START', microtime(true));
@@ -160,6 +161,21 @@ step('app notifications go through Simplify\'s push event, only while it listens
 
     $url = AnnouncementResource::getUrl(panel: 'admin');
     ensure(str_contains(expectOk(visit($admin, $url), $url), 'Devices reached'), 'the list does not show the devices reached');
+});
+
+step('"also send in game" goes out once and records the result', function () use ($admin) {
+    $game = Announcement::create(['title' => 'Smoke in game', 'in_game' => true]);
+    ensure(InGame::sendDue() === 0, 'posted on servers that do not run');
+    $game->refresh();
+    ensure($game->in_game_at !== null && is_array($game->in_game_result), 'the run is not recorded');
+    $at = $game->in_game_at->getTimestamp();
+    InGame::sendDue();
+    ensure($game->fresh()->in_game_at->getTimestamp() === $at, '"only once" went out twice');
+    $game->update(['starts_at' => now()->subMinute()]);
+    ensure($game->fresh()->in_game_at === null, 'a new start does not send it again');
+
+    $url = AnnouncementResource::getUrl(panel: 'admin');
+    ensure(str_contains(expectOk(visit($admin, $url), $url), 'In-game commands'), 'the in-game commands button is missing');
 });
 
 Announcement::query()->where('title', 'like', 'Smoke%')->delete();

@@ -6,14 +6,15 @@ namespace Simplify\Announcements\Console\Commands;
 
 use Illuminate\Console\Command;
 use Simplify\Announcements\Services\Bell;
+use Simplify\Announcements\Services\InGame;
 use Simplify\Announcements\Services\Push;
 
-/** Runs every minute from Pelican's scheduler, so an announcement with a later start reaches the bell and devices when it starts. */
+/** Runs every minute from Pelican's scheduler, so an announcement with a later start reaches the bell, devices and game chats when it starts. */
 final class DeliverAnnouncements extends Command
 {
     protected $signature = 'simplify-announcements:deliver';
 
-    protected $description = 'Puts announcements that just started in the bell and sends them as app notifications.';
+    protected $description = 'Puts announcements that just started in the bell, sends them as app notifications and posts them in game.';
 
     public function handle(): int
     {
@@ -24,6 +25,10 @@ final class DeliverAnnouncements extends Command
         $devices = Push::sendDue();
         if ($devices > 0) {
             $this->info("Sent announcements as app notifications to $devices devices.");
+        }
+        $servers = InGame::sendDue();
+        if ($servers > 0) {
+            $this->info("Posted announcements in game on $servers servers.");
         }
 
         return self::SUCCESS;

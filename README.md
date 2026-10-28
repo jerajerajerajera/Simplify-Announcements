@@ -9,6 +9,9 @@ Warning or Success bar at the top of every page, from the time you choose until 
   until it ends.
 - With Simplify's app notifications turned on, **Also send as app notification** sends it to phones and computers
   too. Devices that come online within a day after the start still get it.
+- **Also send in game** posts it in the chat of running game servers (all, or the ones you pick), once or again every
+  few minutes while it shows. Each game uses its own chat command, such as `say` for Minecraft; change or add them
+  under **In-game commands**.
 - Everyone can unpin a bar. It is then gone for that account and waits in the bell, with a button to pin it again.
 
 It works on its own. With [Simplify](https://github.com/jerajerajerajera/Simplify) installed it also shows up in
@@ -21,10 +24,11 @@ through Pelican's scheduler (`php artisan schedule:run` every minute), as in Pel
 
 ## What it stores and sends
 
-- Two tables: `simplify_announcements` and `simplify_announcement_dismissals` (which account unpinned which bar).
+- Three tables: `simplify_announcements`, `simplify_announcement_dismissals` (which account unpinned which bar) and
+  `simplify_announcement_commands` (your own chat command per egg).
 - Bell items are Pelican's own database notifications. They are removed when the announcement ends or is deleted.
 - App notifications are handed to Simplify (the `simplify.push` event); Simplify sends them. This plugin itself
-  calls no outside services. The plugin adds no routes of its own.
+  calls no outside services. In-game posts go through Pelican's own connection to Wings (the server's console). The plugin adds no routes of its own.
 
 ## License
 
