@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… eller /server/abc123',
         'button_url_invalid' => 'Bruk en lenke som starter med https:// eller med / for en side i dette panelet.',
         'button_label' => 'Knappetekst',
+        'in_bell' => 'Legg også i alles varsler',
+        'in_bell_help' => 'Alle som ser den, finner den også i bjella, fra start til slutt.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'Linjen forsvinner for alle. Du kan vise den igjen ved å endre "Vis til".',
         'empty' => 'Ingen kunngjøringer ennå',
         'empty_help' => 'En kunngjøring vises som en linje øverst på hver side for personene du velger.',
+        'in_bell' => 'Varsler',
+        'in_bell_sent' => 'Sendt',
+        'in_bell_waiting' => 'Venter på start',
     ],
     'bars' => [
         'open' => 'Åpne',

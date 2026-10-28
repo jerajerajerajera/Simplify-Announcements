@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… alebo /server/abc123',
         'button_url_invalid' => 'Použi odkaz, ktorý začína https:// alebo / pre stránku tohto panelu.',
         'button_label' => 'Text tlačidla',
+        'in_bell' => 'Dať aj do upozornení všetkých',
+        'in_bell_help' => 'Každý, kto ho vidí, ho nájde aj v zvončeku, od začiatku do konca.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'Lišta zmizne všetkým. Môžeš ho znova zobraziť zmenou "Zobraziť do".',
         'empty' => 'Zatiaľ žiadne oznámenia',
         'empty_help' => 'Oznámenie sa zobrazí ako lišta hore na každej stránke pre ľudí, ktorých vyberieš.',
+        'in_bell' => 'Upozornenia',
+        'in_bell_sent' => 'Odoslané',
+        'in_bell_waiting' => 'Čaká na začiatok',
     ],
     'bars' => [
         'open' => 'Otvoriť',

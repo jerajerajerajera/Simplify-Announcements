@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… 또는 /server/abc123',
         'button_url_invalid' => 'https://로 시작하는 링크나, 이 패널의 페이지는 /로 시작하는 링크를 사용하세요.',
         'button_label' => '버튼 텍스트',
+        'in_bell' => '모든 사람의 알림에도 넣기',
+        'in_bell_help' => '보는 사람은 시작부터 끝날 때까지 종 아이콘에서도 볼 수 있습니다.',
     ],
     'category' => [
         'info' => '정보',
@@ -44,6 +46,9 @@ return [
         'end_help' => '모든 사람에게서 바가 사라집니다. "표시 종료"를 바꾸면 다시 표시할 수 있습니다.',
         'empty' => '아직 공지가 없습니다',
         'empty_help' => '공지는 선택한 사람들의 모든 페이지 상단에 바로 표시됩니다.',
+        'in_bell' => '알림',
+        'in_bell_sent' => '보냄',
+        'in_bell_waiting' => '시작 대기 중',
     ],
     'bars' => [
         'open' => '열기',

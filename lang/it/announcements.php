@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… o /server/abc123',
         'button_url_invalid' => 'Usa un link che inizia con https:// o con / per una pagina di questo pannello.',
         'button_label' => 'Testo del pulsante',
+        'in_bell' => 'Metti anche nelle notifiche di tutti',
+        'in_bell_help' => 'Chi lo vede lo trova anche nella campanella, dall\'inizio alla fine.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'La sua barra scompare per tutti. Puoi mostrarlo di nuovo modificando "Mostra fino a".',
         'empty' => 'Ancora nessun annuncio',
         'empty_help' => 'Un annuncio appare come una barra in cima a ogni pagina per le persone che scegli.',
+        'in_bell' => 'Notifiche',
+        'in_bell_sent' => 'Inviato',
+        'in_bell_waiting' => 'Attende l\'inizio',
     ],
     'bars' => [
         'open' => 'Apri',

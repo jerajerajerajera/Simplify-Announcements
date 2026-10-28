@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… atau /server/abc123',
         'button_url_invalid' => 'Gunakan tautan yang diawali https:// atau / untuk halaman panel ini.',
         'button_label' => 'Teks tombol',
+        'in_bell' => 'Masukkan juga ke notifikasi semua orang',
+        'in_bell_help' => 'Semua yang melihatnya juga menemukannya di lonceng, dari mulai sampai berakhir.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'Barnya hilang untuk semua orang. Kamu bisa menampilkannya lagi dengan mengubah "Tampilkan sampai".',
         'empty' => 'Belum ada pengumuman',
         'empty_help' => 'Pengumuman tampil sebagai bar di bagian atas setiap halaman untuk orang yang kamu pilih.',
+        'in_bell' => 'Notifikasi',
+        'in_bell_sent' => 'Terkirim',
+        'in_bell_waiting' => 'Menunggu mulai',
     ],
     'bars' => [
         'open' => 'Buka',

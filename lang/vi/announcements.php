@@ -20,6 +20,8 @@ return [
         'button_url_placeholder' => 'https://… hoặc /server/abc123',
         'button_url_invalid' => 'Dùng liên kết bắt đầu bằng https:// hoặc bằng / cho một trang của panel này.',
         'button_label' => 'Chữ trên nút',
+        'in_bell' => 'Đưa cả vào thông báo của mọi người',
+        'in_bell_help' => 'Ai thấy nó cũng sẽ thấy trong chuông, từ lúc bắt đầu đến khi kết thúc.',
     ],
     'category' => [
         'info' => 'Info',
@@ -44,6 +46,9 @@ return [
         'end_help' => 'Thanh của nó biến mất với mọi người. Bạn có thể hiện lại bằng cách đổi "Hiển thị đến".',
         'empty' => 'Chưa có thông báo',
         'empty_help' => 'Thông báo hiện thành một thanh ở đầu mỗi trang cho những người bạn chọn.',
+        'in_bell' => 'Thông báo',
+        'in_bell_sent' => 'Đã gửi',
+        'in_bell_waiting' => 'Chờ bắt đầu',
     ],
     'bars' => [
         'open' => 'Mở',

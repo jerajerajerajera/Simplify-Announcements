@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Simplify\Announcements\Services\Bell;
 use Simplify\Announcements\Support\Rules;
 
 /**
@@ -22,13 +23,15 @@ use Simplify\Announcements\Support\Rules;
  * @property string $audience everyone or admins
  * @property ?string $button_label
  * @property ?string $button_url https://… or /path on this panel
+ * @property bool $in_bell also in everyone's notifications
+ * @property ?CarbonInterface $in_bell_at when it was put there
  * @property ?int $created_by
  */
 final class Announcement extends Model
 {
     protected $table = 'simplify_announcements';
 
-    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'created_by'];
+    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'in_bell', 'created_by'];
 
     protected $attributes = ['category' => 'info', 'audience' => 'everyone'];
 
@@ -37,7 +40,23 @@ final class Announcement extends Model
         return [
             'starts_at' => 'datetime',
             'ends_at' => 'datetime',
+            'in_bell' => 'boolean',
+            'in_bell_at' => 'datetime',
         ];
+    }
+
+    protected static function booted(): void
+    {
+        // An ended or deleted announcement leaves no item behind in anyone's bell.
+        self::deleted(fn (self $announcement) => Bell::forget($announcement->id));
+        self::updated(function (self $announcement): void {
+            $ended = $announcement->state() === 'ended';
+            if ($ended || ($announcement->wasChanged('in_bell') && ! $announcement->in_bell)) {
+                // Put there again when it is shown again, or turned on again.
+                Bell::forget($announcement->id, kind: $ended ? null : Bell::EVERYONE);
+                $announcement->forceFill(['in_bell_at' => null])->saveQuietly();
+            }
+        });
     }
 
     public function author(): BelongsTo

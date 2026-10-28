@@ -11,6 +11,7 @@ use Filament\Actions\EditAction;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Grid;
@@ -19,6 +20,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Simplify\Announcements\Filament\Admin\Resources\Announcements\Pages\ManageAnnouncements;
 use Simplify\Announcements\Models\Announcement;
+use Simplify\Announcements\Services\Bell;
 use Simplify\Announcements\Support\Rules;
 
 /**
@@ -101,6 +103,9 @@ final class AnnouncementResource extends Resource
                     ->placeholder(self::text('bars.open'))
                     ->maxLength(Rules::LABEL_LENGTH),
             ]),
+            Toggle::make('in_bell')
+                ->label(self::text('form.in_bell'))
+                ->helperText(self::text('form.in_bell_help')),
         ]);
     }
 
@@ -141,9 +146,18 @@ final class AnnouncementResource extends Resource
                     ->badge()
                     ->color('gray')
                     ->formatStateUsing(fn (string $state): string => self::text('audience.'.$state)),
+                TextColumn::make('in_bell_at')
+                    ->label(self::text('table.in_bell'))
+                    ->icon('tabler-bell')
+                    ->state(fn (Announcement $record): ?string => match (true) {
+                        ! $record->in_bell => null,
+                        $record->in_bell_at !== null => self::text('table.in_bell_sent'),
+                        default => self::text('table.in_bell_waiting'),
+                    })
+                    ->placeholder('-'),
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->after(fn () => Bell::deliverDue()),
                 Action::make('end')
                     ->label(self::text('table.end'))
                     ->icon('tabler-player-stop')
