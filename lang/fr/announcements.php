@@ -22,6 +22,8 @@ return [
         'button_label' => 'Texte du bouton',
         'in_bell' => 'Ajouter aussi aux notifications de chacun',
         'in_bell_help' => 'Toutes les personnes qui la voient la trouvent aussi dans la cloche, du début à la fin.',
+        'push' => 'Envoyer aussi en notification d\'app',
+        'push_help' => 'Simplify l\'envoie aux téléphones et ordinateurs de toutes les personnes qui la voient et ont activé les notifications d\'app. Les appareils qui se connectent dans la journée suivant le début la reçoivent aussi.',
     ],
     'category' => [
         'info' => 'Info',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Notifications',
         'in_bell_sent' => 'Envoyée',
         'in_bell_waiting' => 'Attend le début',
+        'push' => 'Notification d\'app',
+        'pushed_to' => 'Appareils atteints : :count',
     ],
     'bars' => [
         'open' => 'Ouvrir',

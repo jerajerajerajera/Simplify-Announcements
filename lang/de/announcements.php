@@ -22,6 +22,8 @@ return [
         'button_label' => 'Button-Text',
         'in_bell' => 'Auch in die Benachrichtigungen aller legen',
         'in_bell_help' => 'Alle, die sie sehen, finden sie auch in der Glocke, vom Start bis zum Ende.',
+        'push' => 'Auch als App-Benachrichtigung senden',
+        'push_help' => 'Simplify sendet sie an die Handys und Computer aller, die sie sehen und App-Benachrichtigungen eingeschaltet haben. Geräte, die innerhalb eines Tages nach dem Start online kommen, bekommen sie auch.',
     ],
     'category' => [
         'info' => 'Info',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Benachrichtigungen',
         'in_bell_sent' => 'Gesendet',
         'in_bell_waiting' => 'Wartet auf Start',
+        'push' => 'App-Benachrichtigung',
+        'pushed_to' => 'Erreichte Geräte: :count',
     ],
     'bars' => [
         'open' => 'Öffnen',

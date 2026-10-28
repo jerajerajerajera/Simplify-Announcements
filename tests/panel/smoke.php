@@ -10,12 +10,14 @@ use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 use Illuminate\Foundation\Testing\Concerns\MakesHttpRequests;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Testing\TestResponse;
 use Livewire\Livewire;
 use Simplify\Announcements\Filament\Admin\Resources\Announcements\AnnouncementResource;
 use Simplify\Announcements\Livewire\AnnouncementBars;
 use Simplify\Announcements\Models\Announcement;
 use Simplify\Announcements\Services\Bell;
+use Simplify\Announcements\Services\Push;
 
 define('LARAVEL_START', microtime(true));
 require getcwd().'/vendor/autoload.php';
@@ -134,6 +136,30 @@ step('"in everyone\'s notifications" reaches the bell once, for the right accoun
     ensure(! Bell::has($everyone->id, $player), 'an ended announcement stayed in the bell');
     $admins->delete();
     ensure(! Bell::has($admins->id, $admin), 'a deleted announcement stayed in the bell');
+});
+
+step('app notifications go through Simplify\'s push event, only while it listens', function () use ($admin, $player) {
+    ensure(! Push::available() && Push::sendDue() === 0, 'push looks available without Simplify');
+    $offered = [];
+    Event::listen(Push::EVENT, function (array $payload) use (&$offered): int {
+        $offered[] = $payload;
+
+        return count($payload['users']);
+    });
+    $now = Announcement::create(['title' => 'Smoke push', 'push' => true, 'button_url' => '/']);
+    $admins = Announcement::create(['title' => 'Smoke push for admins', 'push' => true, 'audience' => 'admins']);
+    $old = Announcement::create(['title' => 'Smoke push old', 'push' => true, 'starts_at' => now()->subDays(2)]);
+    Announcement::create(['title' => 'Smoke no push']);
+    Artisan::call('simplify-announcements:deliver');
+
+    $tags = array_column($offered, 'tag');
+    ensure($tags === ['simplify-announcement-'.$now->id, 'simplify-announcement-'.$admins->id] || $tags === ['simplify-announcement-'.$admins->id, 'simplify-announcement-'.$now->id], 'offered the wrong announcements: '.json_encode($tags));
+    $forAdmins = array_values(array_filter($offered, fn (array $p) => $p['tag'] === 'simplify-announcement-'.$admins->id))[0];
+    ensure(in_array($admin->id, $forAdmins['users'], true) && ! in_array($player->id, $forAdmins['users'], true), 'admins-only went to the wrong accounts');
+    ensure($now->fresh()->pushed_to === User::count() && $old->fresh()->pushed_to === 0, 'pushed_to is not added up');
+
+    $url = AnnouncementResource::getUrl(panel: 'admin');
+    ensure(str_contains(expectOk(visit($admin, $url), $url), 'Devices reached'), 'the list does not show the devices reached');
 });
 
 Announcement::query()->where('title', 'like', 'Smoke%')->delete();

@@ -22,6 +22,8 @@ return [
         'button_label' => 'Mygtuko tekstas',
         'in_bell' => 'Įdėti ir į visų pranešimus',
         'in_bell_help' => 'Visi, kurie jį mato, ras jį ir varpelyje nuo pradžios iki pabaigos.',
+        'push' => 'Siųsti ir kaip programėlės pranešimą',
+        'push_help' => 'Simplify išsiunčia jį į visų, kurie jį mato ir įsijungė programėlės pranešimus, telefonus ir kompiuterius. Jį gauna ir įrenginiai, prisijungę per parą nuo pradžios.',
     ],
     'category' => [
         'info' => 'Info',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Pranešimai',
         'in_bell_sent' => 'Išsiųsta',
         'in_bell_waiting' => 'Laukia pradžios',
+        'push' => 'Programėlės pranešimas',
+        'pushed_to' => 'Pasiekta įrenginių: :count',
     ],
     'bars' => [
         'open' => 'Atidaryti',

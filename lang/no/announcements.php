@@ -22,6 +22,8 @@ return [
         'button_label' => 'Knappetekst',
         'in_bell' => 'Legg også i alles varsler',
         'in_bell_help' => 'Alle som ser den, finner den også i bjella, fra start til slutt.',
+        'push' => 'Send også som appvarsel',
+        'push_help' => 'Simplify sender den til telefoner og datamaskiner hos alle som ser den og har slått på appvarsler. Enheter som kommer på nett innen en dag etter start, får den også.',
     ],
     'category' => [
         'info' => 'Info',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Varsler',
         'in_bell_sent' => 'Sendt',
         'in_bell_waiting' => 'Venter på start',
+        'push' => 'Appvarsel',
+        'pushed_to' => 'Enheter nådd: :count',
     ],
     'bars' => [
         'open' => 'Åpne',

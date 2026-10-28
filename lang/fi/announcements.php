@@ -22,6 +22,8 @@ return [
         'button_label' => 'Painikkeen teksti',
         'in_bell' => 'Lisää myös kaikkien ilmoituksiin',
         'in_bell_help' => 'Jokainen, joka näkee sen, löytää sen myös kellosta alusta loppuun.',
+        'push' => 'Lähetä myös sovellusilmoituksena',
+        'push_help' => 'Simplify lähettää sen kaikkien niiden puhelimiin ja tietokoneisiin, jotka näkevät sen ja ovat ottaneet sovellusilmoitukset käyttöön. Myös laitteet, jotka tulevat verkkoon vuorokauden sisällä alusta, saavat sen.',
     ],
     'category' => [
         'info' => 'Info',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Ilmoitukset',
         'in_bell_sent' => 'Lähetetty',
         'in_bell_waiting' => 'Odottaa alkua',
+        'push' => 'Sovellusilmoitus',
+        'pushed_to' => 'Tavoitetut laitteet: :count',
     ],
     'bars' => [
         'open' => 'Avaa',

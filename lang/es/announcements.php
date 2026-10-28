@@ -22,6 +22,8 @@ return [
         'button_label' => 'Texto del botón',
         'in_bell' => 'Poner también en las notificaciones de todos',
         'in_bell_help' => 'Quien lo ve también lo encuentra en la campana, desde que empieza hasta que termina.',
+        'push' => 'Enviar también como notificación de la app',
+        'push_help' => 'Simplify lo envía a los móviles y ordenadores de quien lo ve y tiene activadas las notificaciones de la app. Los dispositivos que se conecten en el día siguiente al inicio también lo reciben.',
     ],
     'category' => [
         'info' => 'Info',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Notificaciones',
         'in_bell_sent' => 'Enviado',
         'in_bell_waiting' => 'Espera el inicio',
+        'push' => 'Notificación de la app',
+        'pushed_to' => 'Dispositivos alcanzados: :count',
     ],
     'bars' => [
         'open' => 'Abrir',

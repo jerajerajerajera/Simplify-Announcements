@@ -7,7 +7,6 @@ namespace Simplify\Announcements\Filament\Admin\Resources\Announcements\Pages;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ManageRecords;
 use Simplify\Announcements\Filament\Admin\Resources\Announcements\AnnouncementResource;
-use Simplify\Announcements\Services\Bell;
 
 final class ManageAnnouncements extends ManageRecords
 {
@@ -19,8 +18,7 @@ final class ManageAnnouncements extends ManageRecords
             CreateAction::make()
                 ->icon('tabler-plus')
                 ->mutateDataUsing(fn (array $data): array => [...$data, 'created_by' => user()?->id])
-                // A live announcement reaches the bell right away instead of on the next scheduler run.
-                ->after(fn () => Bell::deliverDue()),
+                ->after(fn () => AnnouncementResource::deliverNow()),
         ];
     }
 }

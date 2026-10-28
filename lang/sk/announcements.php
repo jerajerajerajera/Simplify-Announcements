@@ -22,6 +22,8 @@ return [
         'button_label' => 'Text tlačidla',
         'in_bell' => 'Dať aj do upozornení všetkých',
         'in_bell_help' => 'Každý, kto ho vidí, ho nájde aj v zvončeku, od začiatku do konca.',
+        'push' => 'Poslať aj ako upozornenie aplikácie',
+        'push_help' => 'Simplify ho pošle na telefóny a počítače všetkých, ktorí ho vidia a majú zapnuté upozornenia aplikácie. Dostanú ho aj zariadenia, ktoré sa pripoja do jedného dňa od začiatku.',
     ],
     'category' => [
         'info' => 'Info',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Upozornenia',
         'in_bell_sent' => 'Odoslané',
         'in_bell_waiting' => 'Čaká na začiatok',
+        'push' => 'Upozornenie aplikácie',
+        'pushed_to' => 'Zasiahnuté zariadenia: :count',
     ],
     'bars' => [
         'open' => 'Otvoriť',

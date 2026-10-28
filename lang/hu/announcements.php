@@ -22,6 +22,8 @@ return [
         'button_label' => 'Gomb szövege',
         'in_bell' => 'Mindenki értesítései közé is',
         'in_bell_help' => 'Aki látja, a csengőben is megtalálja, a kezdéstől a végéig.',
+        'push' => 'Küldés alkalmazásértesítésként is',
+        'push_help' => 'A Simplify elküldi mindenki telefonjára és számítógépére, aki látja és bekapcsolta az alkalmazásértesítéseket. Azok az eszközök is megkapják, amelyek a kezdés után egy napon belül online lesznek.',
     ],
     'category' => [
         'info' => 'Info',
@@ -49,6 +51,8 @@ return [
         'in_bell' => 'Értesítések',
         'in_bell_sent' => 'Elküldve',
         'in_bell_waiting' => 'Kezdésre vár',
+        'push' => 'Alkalmazásértesítés',
+        'pushed_to' => 'Elért eszközök: :count',
     ],
     'bars' => [
         'open' => 'Megnyitás',
