@@ -27,13 +27,18 @@ use Simplify\Announcements\Support\Rules;
  * @property ?CarbonInterface $in_bell_at when it was put there
  * @property bool $push also as app notification through Simplify
  * @property int $pushed_to devices reached, added up
+ * @property bool $in_game also posted in the chat of game servers
+ * @property ?list<int> $in_game_servers empty: all servers
+ * @property int $in_game_repeat minutes between posts, 0: once
+ * @property ?CarbonInterface $in_game_at last post
+ * @property ?array{sent: int, offline: int, unsupported: int, failed: int} $in_game_result
  * @property ?int $created_by
  */
 final class Announcement extends Model
 {
     protected $table = 'simplify_announcements';
 
-    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'in_bell', 'push', 'created_by'];
+    protected $fillable = ['category', 'title', 'body', 'starts_at', 'ends_at', 'audience', 'button_label', 'button_url', 'in_bell', 'push', 'in_game', 'in_game_servers', 'in_game_repeat', 'created_by'];
 
     protected $attributes = ['category' => 'info', 'audience' => 'everyone'];
 
@@ -46,6 +51,11 @@ final class Announcement extends Model
             'in_bell_at' => 'datetime',
             'push' => 'boolean',
             'pushed_to' => 'integer',
+            'in_game' => 'boolean',
+            'in_game_servers' => 'array',
+            'in_game_repeat' => 'integer',
+            'in_game_at' => 'datetime',
+            'in_game_result' => 'array',
         ];
     }
 
@@ -59,6 +69,10 @@ final class Announcement extends Model
                 // Put there again when it is shown again, or turned on again.
                 Bell::forget($announcement->id, kind: $ended ? null : Bell::EVERYONE);
                 $announcement->forceFill(['in_bell_at' => null])->saveQuietly();
+            }
+            // A new start, or just turned on: it goes out in game again.
+            if ($announcement->wasChanged(['starts_at', 'in_game'])) {
+                $announcement->forceFill(['in_game_at' => null, 'in_game_result' => null])->saveQuietly();
             }
         });
     }

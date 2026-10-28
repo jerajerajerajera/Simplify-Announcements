@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Simplify\Announcements\Filament\Admin\Resources\Announcements;
 
+use App\Models\Server;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -22,6 +24,7 @@ use Simplify\Announcements\Filament\Admin\Resources\Announcements\Pages\ManageAn
 use Simplify\Announcements\Models\Announcement;
 use Simplify\Announcements\Services\Bell;
 use Simplify\Announcements\Services\Push;
+use Simplify\Announcements\Support\GameChat;
 use Simplify\Announcements\Support\Rules;
 
 /**
@@ -112,6 +115,25 @@ final class AnnouncementResource extends Resource
                 ->helperText(self::text('form.push_help'))
                 ->default(true)
                 ->visible(Push::available()),
+            Toggle::make('in_game')
+                ->label(self::text('form.in_game'))
+                ->helperText(self::text('form.in_game_help'))
+                ->live(),
+            Grid::make(2)->visible(fn ($get): bool => (bool) $get('in_game'))->schema([
+                Select::make('in_game_servers')
+                    ->label(self::text('form.in_game_servers'))
+                    ->placeholder(self::text('form.in_game_servers_all'))
+                    ->helperText(self::text('form.in_game_servers_help'))
+                    ->multiple()
+                    ->searchable()
+                    ->getSearchResultsUsing(fn (string $search): array => Server::query()->where('name', 'like', '%'.$search.'%')->orderBy('name')->limit(50)->pluck('name', 'id')->all())
+                    ->getOptionLabelsUsing(fn (array $values): array => Server::query()->whereKey($values)->pluck('name', 'id')->all()),
+                Select::make('in_game_repeat')
+                    ->label(self::text('form.in_game_repeat'))
+                    ->options(self::repeats())
+                    ->default(0)
+                    ->selectablePlaceholder(false),
+            ]),
         ]);
     }
 
@@ -167,6 +189,11 @@ final class AnnouncementResource extends Resource
                     ->state(fn (Announcement $record): ?string => $record->push ? self::text('table.pushed_to', ['count' => $record->pushed_to]) : null)
                     ->placeholder('-')
                     ->visible(Push::available()),
+                TextColumn::make('in_game_result')
+                    ->label(self::text('table.in_game'))
+                    ->icon('tabler-device-gamepad-2')
+                    ->state(fn (Announcement $record): ?string => self::inGameSummary($record))
+                    ->placeholder('-'),
             ])
             ->recordActions([
                 EditAction::make()->after(fn () => self::deliverNow()),
@@ -198,6 +225,36 @@ final class AnnouncementResource extends Resource
     {
         Bell::deliverDue();
         Push::sendDue();
+    }
+
+    /** @return array<int, string> */
+    public static function repeats(): array
+    {
+        $labels = [];
+        foreach (GameChat::REPEATS as $minutes) {
+            $labels[$minutes] = match (true) {
+                $minutes === 0 => self::text('repeat.once'),
+                $minutes === 60 => self::text('repeat.hourly'),
+                $minutes > 60 => self::text('repeat.hours', ['count' => intdiv($minutes, 60)]),
+                default => self::text('repeat.minutes', ['count' => $minutes]),
+            };
+        }
+
+        return $labels;
+    }
+
+    private static function inGameSummary(Announcement $record): ?string
+    {
+        if (! $record->in_game) {
+            return null;
+        }
+        $result = $record->in_game_result;
+        if (! is_array($result)) {
+            return self::text('table.in_bell_waiting');
+        }
+        $total = array_sum(array_map('intval', $result));
+
+        return self::text('table.in_game_sent', ['sent' => (int) ($result['sent'] ?? 0), 'total' => $total]);
     }
 
     /** Times are stored in UTC and shown in the admin's own time zone from their Pelican profile. */

@@ -4,9 +4,15 @@ declare(strict_types=1);
 
 namespace Simplify\Announcements\Filament\Admin\Resources\Announcements\Pages;
 
+use App\Models\Egg;
+use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ManageRecords;
 use Simplify\Announcements\Filament\Admin\Resources\Announcements\AnnouncementResource;
+use Simplify\Announcements\Models\GameCommand;
+use Simplify\Announcements\Support\GameChat;
 
 final class ManageAnnouncements extends ManageRecords
 {
@@ -15,10 +21,45 @@ final class ManageAnnouncements extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
+            $this->commandsAction(),
             CreateAction::make()
                 ->icon('tabler-plus')
                 ->mutateDataUsing(fn (array $data): array => [...$data, 'created_by' => user()?->id])
                 ->after(fn () => AnnouncementResource::deliverNow()),
         ];
+    }
+
+    /** The chat command per game for "Also send in game". Empty is the automatic command, "-" skips the game. */
+    private function commandsAction(): Action
+    {
+        $text = fn (string $key): string => __('simplify-announcements::announcements.commands.'.$key);
+
+        return Action::make('commands')
+            ->label($text('action'))
+            ->icon('tabler-message-chatbot')
+            ->color('gray')
+            ->modalHeading($text('heading'))
+            ->modalDescription($text('help'))
+            ->modalSubmitActionLabel(__('simplify-announcements::announcements.commands.save'))
+            ->fillForm(fn (): array => collect(GameCommand::query()->pluck('command', 'egg_id'))->mapWithKeys(fn (string $command, int $egg) => ['egg_'.$egg => $command])->all())
+            ->schema(fn (): array => Egg::query()->orderBy('name')->get()->map(fn (Egg $egg) => TextInput::make('egg_'.$egg->id)
+                ->label($egg->name)
+                ->placeholder(GameChat::defaultCommand($egg->name) ?? $text('none'))
+                ->maxLength(GameChat::COMMAND_LENGTH)
+                ->rule(fn () => function (string $attribute, mixed $value, $fail) use ($text): void {
+                    if (filled($value) && ! GameChat::isValidCommand(trim((string) $value))) {
+                        $fail($text('invalid'));
+                    }
+                }))->all())
+            ->action(function (array $data): void {
+                foreach ($data as $key => $command) {
+                    $egg = (int) substr((string) $key, 4);
+                    $command = trim((string) $command);
+                    $command === ''
+                        ? GameCommand::query()->whereKey($egg)->delete()
+                        : GameCommand::query()->updateOrCreate(['egg_id' => $egg], ['command' => $command]);
+                }
+                Notification::make()->title(__('simplify-announcements::announcements.commands.saved'))->success()->send();
+            });
     }
 }
