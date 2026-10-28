@@ -114,4 +114,7 @@ step('unpin moves a bar to the bell and pin brings it back', function () use ($p
 });
 
 Announcement::query()->where('title', 'like', 'Smoke%')->delete();
-exit($failed ? 1 : 0);
+if ($failed) {
+    exit(1);
+}
+echo "All steps passed\n";

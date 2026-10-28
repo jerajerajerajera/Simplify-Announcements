@@ -70,7 +70,10 @@ jobs:
           grep -E 'Simplify Announcements .*\| enabled' plugins.txt || { echo 'Simplify Announcements did not install'; exit 1; }
       - name: Open the pages
         working-directory: panel
-        run: php plugins/simplify-announcements/tests/panel/smoke.php
+        # Also checks the last line: an error outside a step can end the script with exit code 0.
+        run: |
+          php plugins/simplify-announcements/tests/panel/smoke.php | tee smoke.txt
+          grep -q '^All steps passed$' smoke.txt
       - name: Laravel log
         if: failure()
         run: grep -h -E '^\[[0-9-]+ [0-9:]+\]' panel/storage/logs/*.log | cut -c1-600 | tail -n 12 || true
