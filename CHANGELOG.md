@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1
+
+- Announcements now sits in the Simplify group of Pelican's admin menu, together with the other Simplify add-ons,
+  in the same order everywhere. This works with or without the Simplify core.
+
 ## 1.0.0
 
 - Announcements as Info, Warning or Success bars at the top of every page, from a start time until an end time.

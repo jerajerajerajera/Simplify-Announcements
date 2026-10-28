@@ -38,7 +38,15 @@ final class AnnouncementResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'tabler-speakerphone';
 
+    protected static ?int $navigationSort = 10;
+
     protected static ?string $recordTitleAttribute = 'title';
+
+    /** In the Simplify group of Pelican's menu, with the other Simplify add-ons (Simplify's ADDONS.md, "Admin menu"). */
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Simplify';
+    }
 
     public static function getNavigationLabel(): string
     {
